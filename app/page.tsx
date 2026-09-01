@@ -48,6 +48,39 @@ const steps = [
   ["04", "Réalisation", "Nous posons avec soin, nettoyons le chantier et restons disponibles."],
 ];
 
+const projects = [
+  {
+    image: "/realisation-plage-piscine.jpeg",
+    type: "Terrasse bois",
+    title: "Une plage de piscine dessinée autour de l’existant",
+  },
+  {
+    image: "/realisation-pergola.jpeg",
+    type: "Pergola bioclimatique",
+    title: "De l’ombre, de la lumière et une vue préservée",
+  },
+  {
+    image: "/realisation-terrasse-piscine.jpeg",
+    type: "Aménagement extérieur",
+    title: "Une terrasse qui épouse chaque ligne du bassin",
+  },
+  {
+    image: "/realisation-terrasse-maison.jpeg",
+    type: "Terrasse bois",
+    title: "Un nouvel espace de vie ouvert sur le jardin",
+  },
+  {
+    image: "/realisation-bardage-terrasse.jpeg",
+    type: "Terrasse & bardage",
+    title: "Le bois comme fil conducteur de l’ensemble",
+  },
+  {
+    image: "/realisation-interieur.jpeg",
+    type: "Aménagement intérieur",
+    title: "Un sol chaleureux pour un intérieur lumineux",
+  },
+];
+
 function Logo() {
   return (
     <span className="brand" aria-hidden="true">
@@ -83,6 +116,7 @@ export default function Home() {
           </a>
           <nav className="desktop-nav" aria-label="Navigation principale">
             <a href="#services">Nos savoir-faire</a>
+            <a href="#realisations">Réalisations</a>
             <a href="#methode">Notre méthode</a>
             <a href="#engagements">Nos engagements</a>
             <a href="#contact">Contact</a>
@@ -92,6 +126,7 @@ export default function Home() {
             <summary aria-label="Ouvrir le menu"><span /><span /></summary>
             <nav aria-label="Navigation mobile">
               <a href="#services">Nos savoir-faire</a>
+              <a href="#realisations">Réalisations</a>
               <a href="#methode">Notre méthode</a>
               <a href="#engagements">Nos engagements</a>
               <a href="#contact">Demander un devis</a>
@@ -125,13 +160,14 @@ export default function Home() {
           <div className="hero-visual">
             <div className="visual-frame">
               <img
-                src="/mpm-brand.jpeg"
-                alt="Présentation de Métal Portail & Menuiserie et de ses réalisations extérieures"
+                src="/realisation-terrasse-maison.jpeg"
+                alt="Terrasse en bois réalisée par Métal Portail & Menuiserie"
+                fetchPriority="high"
               />
             </div>
             <div className="visual-note">
               <span className="note-index">MPM</span>
-              <p><strong>Conception &amp; pose</strong><br />Sur mesure, du conseil aux finitions</p>
+              <p><strong>Une réalisation MPM</strong><br />Terrasse bois conçue et posée sur mesure</p>
             </div>
           </div>
         </div>
@@ -175,6 +211,36 @@ export default function Home() {
               </div>
             </article>
           ))}
+        </div>
+      </section>
+
+      <section className="section realisations" id="realisations">
+        <div className="section-heading realisations-heading">
+          <div>
+            <p className="eyebrow dark"><span /> Nos réalisations</p>
+            <h2>Le soin du détail.<br /><em>La preuve en images.</em></h2>
+          </div>
+          <div className="realisations-lead">
+            <p>Terrasses, pergolas, bardages et aménagements intérieurs : découvrez des projets réellement réalisés par notre équipe.</p>
+            <a className="text-link dark-link" href="#contact">Imaginer le vôtre <span>→</span></a>
+          </div>
+        </div>
+
+        <div className="project-grid">
+          {projects.map((project, index) => (
+            <figure className={`project-card project-${index + 1}`} key={project.image}>
+              <img src={project.image} alt={project.title} loading={index === 0 ? "eager" : "lazy"} />
+              <figcaption>
+                <span>{project.type}</span>
+                <strong>{project.title}</strong>
+                <i>{String(index + 1).padStart(2, "0")}</i>
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+        <div className="gallery-cta">
+          <p>Vous imaginez déjà la suite chez vous ?</p>
+          <a className="button button-primary" href="#contact">Demander une étude offerte <span>↗</span></a>
         </div>
       </section>
 
